@@ -1,7 +1,7 @@
-
 import { LoadStrategy, MikroORM } from '@mikro-orm/core';
-import { Cat, Profile, User } from './user';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
+
+import { Cat, Profile, User } from './models';
 
 async function main() {
   const orm = await MikroORM.init({
