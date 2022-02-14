@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "@mikro-orm/core": "^5.0.1",
-    "@mikro-orm/reflection": "^5.0.1",
     "@mikro-orm/sqlite": "^5.0.1"
   },
   "devDependencies": {

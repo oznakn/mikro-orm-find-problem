@@ -2,10 +2,10 @@ import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 
 @Entity()
 export class Cat {
-    @PrimaryKey()
+    @PrimaryKey({ type: Number })
     id!: number;
 
-    @Property({ persist: true })
+    @Property({ type: String, persist: true })
     get abc() {
         return 'ABC';
     }

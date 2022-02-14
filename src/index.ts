@@ -1,6 +1,4 @@
 import { LoadStrategy, MikroORM } from '@mikro-orm/core';
-import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
-
 import { Cat } from './models';
 
 async function main() {
@@ -9,7 +7,6 @@ async function main() {
     type: 'sqlite',
     entities: [Cat],
     loadStrategy: LoadStrategy.JOINED,
-    metadataProvider: TsMorphMetadataProvider,
   });
   await orm.getSchemaGenerator().execute(await orm.getSchemaGenerator().generate());
 
