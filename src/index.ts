@@ -1,13 +1,13 @@
 import { LoadStrategy, MikroORM } from '@mikro-orm/core';
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 
-import { Cat, Profile, User } from './models';
+import { Cat } from './models';
 
 async function main() {
   const orm = await MikroORM.init({
     dbName: ':memory:',
     type: 'sqlite',
-    entities: [User, Profile, Cat],
+    entities: [Cat],
     loadStrategy: LoadStrategy.JOINED,
     metadataProvider: TsMorphMetadataProvider,
   });
@@ -15,18 +15,18 @@ async function main() {
 
   const em = orm.em.fork();
 
-  em.create(
-    User,
-    {
-      id: 'TestPrimary',
-      name: 'TestName',
-    },
-    { persist: true },
-  );
+  let cat = new Cat();
+  em.persist(cat);
   await em.flush();
   em.clear();
 
-  console.log(await em.find(User, {}));
+  cat = await em.findOneOrFail(Cat, { id: cat.id });
+  em.persist(cat);
+  await em.flush();
+  em.clear();
+
+  cat = await em.findOneOrFail(Cat, { id:cat.id });
+  console.log(cat.abc);
 }
 
 main();
