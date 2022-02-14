@@ -20,13 +20,8 @@ async function main() {
   await em.flush();
   em.clear();
 
-  cat = await em.findOneOrFail(Cat, { id: cat.id });
-  em.persist(cat);
-  await em.flush();
-  em.clear();
-
   cat = await em.findOneOrFail(Cat, { id:cat.id });
-  console.log(cat.abc);
+  console.log(cat, cat.abc);
 }
 
 main();
