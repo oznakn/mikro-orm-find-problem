@@ -22,6 +22,7 @@ async function main() {
   cat.name = 'TestName2';
   em.persist(cat);
   await em.flush();
+  em.clear();
 
   cat = await em.findOneOrFail(Cat, { id: cat.id });
   console.log(cat.name, cat.lowerName, cat.name.toLowerCase() === cat.lowerName);
