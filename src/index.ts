@@ -13,12 +13,18 @@ async function main() {
   const em = orm.em.fork();
 
   let cat = new Cat();
+  cat.name = 'TestName';
   em.persist(cat);
   await em.flush();
   em.clear();
 
-  cat = await em.findOneOrFail(Cat, { id:cat.id });
-  console.log(cat, cat.abc);
+  cat = await em.findOneOrFail(Cat, { id: cat.id });
+  cat.name = 'TestName2';
+  em.persist(cat);
+  await em.flush();
+
+  cat = await em.findOneOrFail(Cat, { id: cat.id });
+  console.log(cat.name, cat.lowerName, cat.name.toLowerCase() === cat.lowerName);
 }
 
 main();

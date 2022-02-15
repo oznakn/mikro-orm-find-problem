@@ -5,8 +5,11 @@ export class Cat {
     @PrimaryKey({ type: Number })
     id!: number;
 
+    @Property({ type: String })
+    name!: string;
+
     @Property({ type: String, persist: true })
-    get abc() {
-        return 'ABC';
+    get lowerName() {
+        return this.name.toLowerCase();
     }
 }
